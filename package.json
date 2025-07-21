@@ -1,0 +1,70 @@
+{
+  "name": "deleted-code-saver",
+  "displayName": "Deleted Code Saver",
+  "description": "Automatically saves deleted code to a file for recovery",
+  "version": "1.0.0",
+  "publisher": "yourname",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Deleted Code Saver",
+      "properties": {
+        "deletedCodeSaver.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable deleted code saving"
+        },
+        "deletedCodeSaver.saveLocation": {
+          "type": "string",
+          "default": ".vscode/deleted-code.log",
+          "description": "File path to save deleted code (relative to workspace root)"
+        },
+        "deletedCodeSaver.minDeletionLength": {
+          "type": "number",
+          "default": 10,
+          "description": "Minimum number of characters to consider as significant deletion"
+        },
+        "deletedCodeSaver.includeTimestamp": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include timestamp with deleted code entries"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "deletedCodeSaver.openDeletedCodeFile",
+        "title": "Open Deleted Code File"
+      },
+      {
+        "command": "deletedCodeSaver.clearDeletedCodeFile",
+        "title": "Clear Deleted Code File"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "typescript": "^4.7.4"
+  }
+}
